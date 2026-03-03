@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route:: redirect('/', '/admin');
+Route::redirect('/', '/admin');
 //Route::get('/', function () {
-  //  return view('welcome');
+//  return view('welcome');
 //});
 
 Route::middleware([
@@ -15,4 +15,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Ruotes for tickets
+    Route::resource('tickets', App\Http\Controllers\TicketController::class)->only(['index', 'create', 'store']);
 });

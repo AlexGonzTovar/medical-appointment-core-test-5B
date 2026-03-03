@@ -34,6 +34,12 @@
             'href' => route('admin.doctors.index'),
             'active' => request()->routeIs('admin.doctors.*'),
         ],
+        [
+            'name' => 'Soporte',
+            'icon' => 'fa-solid fa-headset',
+            'href' => route('tickets.index'),
+            'active' => request()->routeIs('tickets.*'),
+        ],
     ];
 @endphp
 
