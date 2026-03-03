@@ -16,6 +16,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    // Rutas para la gestión de tickets de soporte
+    // Ruotes for tickets
     Route::resource('tickets', App\Http\Controllers\TicketController::class)->only(['index', 'create', 'store']);
 });
