@@ -150,8 +150,8 @@
                             </x-wire-textarea>
                         </div>
                         <div>
-                            <x-wire-textarea label="Antecedentes familiares" name="family_history">
-                                {{ old('family_history', $patient->family_history) }}
+                            <x-wire-textarea label="Antecedentes familiares" name="family_medical_history">
+                                {{ old('family_medical_history', $patient->family_medical_history) }}
                             </x-wire-textarea>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                             value="{{ old('emergency_contact_phone', $patient->emergency_contact_phone) }}" />
                         <x-wire-input label="Relación con el contacto" name="emergency_contact_relationship"
                             placeholder="Familiar, amigo, etc."
-                            value="{{ old('emergency_contact_name', $patient->emergency_contact_name) }}" />
+                            value="{{ old('emergency_contact_relationship', $patient->emergency_contact_relationship) }}" />
                     </div>
                 </x-tab-content>
             </x-tabs>

@@ -8,6 +8,7 @@ use App\Models\User;
 class Patient extends Model
 {
     protected $fillable = [
+        'blood_type_id',
         'chronic_conditions',
         'allergies',
         'surgical_history',
@@ -26,5 +27,10 @@ class Patient extends Model
     public function bloodType()
     {
         return $this->belongsTo(BloodType::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

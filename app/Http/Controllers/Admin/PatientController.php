@@ -61,7 +61,7 @@ class PatientController extends Controller
         'allergies' => 'nullable|string|min:3|max:255',
         'chronic_conditions' => 'nullable|string|min:3|max:255',
         'surgical_history' => 'nullable|string|min:3|max:255',
-        'family_history' => 'nullable|string|min:3|max:255',
+        'family_medical_history' => 'nullable|string|min:3|max:255',
         'observations' => 'nullable|string|min:3|max:255',
         'emergency_contact_name' => 'nullable|string|min:3|max:255',
         'emergency_contact_phone' => ['nullable', 'string', 'max:12', 'min:10'],

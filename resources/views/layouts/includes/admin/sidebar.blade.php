@@ -35,6 +35,12 @@
             'active' => request()->routeIs('admin.doctors.*'),
         ],
         [
+            'name' => 'Citas médicas',
+            'icon' => 'fa-solid fa-calendar-check',
+            'href' => route('admin.appointments.index'),
+            'active' => request()->routeIs('admin.appointments.*'),
+        ],
+        [
             'name' => 'Soporte',
             'icon' => 'fa-solid fa-headset',
             'href' => route('tickets.index'),
