@@ -18,7 +18,7 @@ class Patient extends Model
         'emergency_contact_phone',
         'emergency_contact_relationship',
     ];
-    // Relación uno a uno inversa
+    // Relación uno a uno inversaaaa
     public function user()
     {
         return $this->belongsTo(User::class);
