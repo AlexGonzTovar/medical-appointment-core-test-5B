@@ -41,12 +41,6 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
 
-    - name: Clear config
-      run: php artisan config:clear
-
-    - name: Clear cache
-      run: php artisan cache:clear
-
     - name: Set permissions
       run: chmod -R 777 storage bootstrap/cache
 
