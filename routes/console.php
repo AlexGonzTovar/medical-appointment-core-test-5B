@@ -8,3 +8,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 \Illuminate\Support\Facades\Schedule::command('appointments:send-reminders')->dailyAt('08:00');
+\Illuminate\Support\Facades\Schedule::command('appointments:daily-report')->dailyAt('08:00');

@@ -14,6 +14,7 @@ class CreateAppointment extends Component
     public $date;
     public $speciality_id;
     public $time; // opcional por UI
+    public $reason;
 
     public $availableDoctors = [];
     public $availablePatients = [];
@@ -133,8 +134,10 @@ class CreateAppointment extends Component
     {
         $this->validate([
             'selectedPatientId' => 'required|exists:patients,id',
+            'reason' => 'required|string|max:1000',
         ], [
             'selectedPatientId.required' => 'Debes seleccionar un paciente para agendar la cita.',
+            'reason.required' => 'Debes escribir el motivo de la cita.',
         ]);
 
         Appointment::create([
@@ -144,9 +147,11 @@ class CreateAppointment extends Component
             'start_time' => $this->selectedTimeSlot['start'],
             'end_time' => $this->selectedTimeSlot['end'],
             'status' => 'Programado',
+            'reason' => $this->reason,
         ]);
 
         $this->closeConfirmModal();
+        $this->reset('reason'); // clean it up afterwards
         
         session()->flash('swal', [
             'icon' => 'success',

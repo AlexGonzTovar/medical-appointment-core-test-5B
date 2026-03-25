@@ -123,6 +123,12 @@
                             @error('selectedPatientId') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                         </div>
 
+                        <div class="mb-5">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Motivo de la Cita</label>
+                            <x-wire-textarea wire:model="reason" placeholder="Describe brevemente el motivo o síntomas..." rows="3"></x-wire-textarea>
+                            @error('reason') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                        </div>
+
                         <div class="flex justify-end space-x-3 mt-6">
                             <x-wire-button wire:click="closeConfirmModal" secondary>Cancelar</x-wire-button>
                             <x-wire-button type="submit" primary>Confirmar y Agendar</x-wire-button>
