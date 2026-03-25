@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Appointment;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AppointmentReceiptMail;
 
 class AppointmentObserver
 {
@@ -34,6 +36,24 @@ class AppointmentObserver
                 $whatsappService->sendMessage($patientPhone, $message);
             } else {
                 \Illuminate\Support\Facades\Log::info('No phone number for patient.');
+            }
+
+            // --- Enviar Correo con PDF al Paciente y al Doctor ---
+            try {
+                $patientEmail = $appointment->patient->user->email;
+                $doctorEmail = $appointment->doctor->user->email;
+
+                if ($patientEmail) {
+                    Mail::to($patientEmail)->send(new AppointmentReceiptMail($appointment));
+                    \Illuminate\Support\Facades\Log::info("Email sent to Patient: {$patientEmail}");
+                }
+
+                if ($doctorEmail) {
+                    Mail::to($doctorEmail)->send(new AppointmentReceiptMail($appointment));
+                    \Illuminate\Support\Facades\Log::info("Email sent to Doctor: {$doctorEmail}");
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error("Error sending appointment receipt emails: " . $e->getMessage());
             }
         }
     }

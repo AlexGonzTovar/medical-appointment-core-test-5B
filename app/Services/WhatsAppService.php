@@ -40,14 +40,19 @@ class WhatsAppService
 
         // Twilio requires phone numbers to be in a specific format for WhatsApp: "whatsapp:+1234567890"
         
-        // Clean the number and ensure it starts with '+'
-        $cleanNumber = preg_replace('/[^0-9+]/', '', $to);
-        if (strpos($cleanNumber, '+') !== 0) {
-             // In Mexico +52, adjust accordingly or rely on the DB having the correct country code
-            $cleanNumber = '+' . ltrim($cleanNumber, '0');
+        // Remove all non-numeric characters first
+        $cleanNumber = preg_replace('/[^0-9]/', '', $to);
+
+        // Ajuste específico para México (+521) requerido por WhatsApp/Twilio
+        if (strlen($cleanNumber) === 10) {
+            // Si son 10 dígitos, asumimos México y agregamos 521
+            $cleanNumber = '521' . $cleanNumber;
+        } elseif (strlen($cleanNumber) === 12 && str_starts_with($cleanNumber, '52')) {
+            // Si son 12 dígitos y empieza con 52, insertamos el 1 de celulares en México
+            $cleanNumber = '521' . substr($cleanNumber, 2);
         }
 
-        $recipient = "whatsapp:" . $cleanNumber;
+        $recipient = "whatsapp:+" . $cleanNumber;
         $sender = "whatsapp:" . $this->from;
 
         try {
